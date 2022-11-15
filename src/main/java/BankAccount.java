@@ -5,18 +5,17 @@ public class BankAccount {
     private String firstName;
     private String lastName;
     private LocalDate dateOfBirth;
-    private Long accountNumber;
-    private Long balance;
+    private Integer accountNumber;
+    private Integer balance = 0;
 
     //Constructor:
     public BankAccount(String firstName, String lastName, LocalDate dateOfBirth,
-                       Long accountNumber, Long balance){
+                       Integer accountNumber){
 
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
         this.accountNumber = accountNumber;
-        this.balance = balance;
 
     }
 
@@ -52,24 +51,22 @@ public class BankAccount {
     }
 
     // _______ accountNumber _______
-    public Long getAccountNumber() {
+    public Integer getAccountNumber() {
         return this.accountNumber;
     }
 
-    public void setAccountNumber(Long accountNumber) {
+    public void setAccountNumber(Integer accountNumber) {
         this.accountNumber = accountNumber;
     }
 
     // ________ balance _______
-    public Long getBalance() {
+    public Integer getBalance() {
         return this.balance;
     }
 
 
-    public void setBalance(Long balance){
+    public void setBalance(Integer balance){
         this.balance = balance;
     }
-
-
 
 }
