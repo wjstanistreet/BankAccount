@@ -20,7 +20,24 @@ public class BankAccount {
     }
 
     // Custom methods:
+    public void deposit(Integer depositAmount){
+        // gets current account balance and adds the deposit amount
+        if (depositAmount < 0) {
+            System.out.println("[Error]: You can't deposit a negative amount");
+        } else {
+            int currentBalance = this.getBalance();
+            this.setBalance(currentBalance + depositAmount);
+        }
+    }
 
+    public void withdrawal(Integer withdrawalAmount){
+        if (withdrawalAmount < 0) {
+            System.out.println("[Error]: You can't withdraw a negative amount");
+        } else {
+            int currentBalance = this.getBalance();
+            this.setBalance(currentBalance - withdrawalAmount);
+        }
+    }
 
     // Getters and Setters:
     // _______ firstName _______
@@ -63,7 +80,6 @@ public class BankAccount {
     public Integer getBalance() {
         return this.balance;
     }
-
 
     public void setBalance(Integer balance){
         this.balance = balance;

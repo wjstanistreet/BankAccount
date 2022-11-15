@@ -62,6 +62,11 @@ public class BankAccountTest {
     public void hasBalance(){
         // Balance should be 0 by default
         assertThat(testBankAccount.getBalance()).isEqualTo(0);
+
+        // With a new balance, test if getBalance() still works
+        testBankAccount.setBalance(500000);
+        assertThat(testBankAccount.getBalance()).isEqualTo(500000);
+
     }
 
     @Test
