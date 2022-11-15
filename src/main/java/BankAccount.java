@@ -12,16 +12,18 @@ public class BankAccount {
 
     // Extension properties:
     private String accountType;
+    private Integer overdraft;
 
     //Constructor:
     public BankAccount(String firstName, String lastName, LocalDate dateOfBirth,
-                       Integer accountNumber, String accountType){
+                       Integer accountNumber, String accountType, Integer overdraft){
 
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
         this.accountNumber = accountNumber;
         this.accountType = accountType;
+        this.overdraft = overdraft;
 
     }
 
@@ -119,6 +121,15 @@ public class BankAccount {
 
     public void setAccountType(String accountType){
         this.accountType = accountType;
+    }
+
+    // _____ overdraft ______
+    public Integer getOverdraft() {
+        return this.overdraft;
+    }
+
+    public void setOverdraft(Integer overdraft){
+        this.overdraft = overdraft;
     }
 
 }

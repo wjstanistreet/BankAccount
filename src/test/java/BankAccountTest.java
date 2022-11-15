@@ -11,7 +11,7 @@ public class BankAccountTest {
 
     @BeforeEach
     public void setUp() {
-        testBankAccount = new BankAccount("Will", "Stanistreet", LocalDate.of(1999, 7, 2), 1, "Savings");
+        testBankAccount = new BankAccount("Will", "Stanistreet", LocalDate.of(1999, 7, 2), 1, "Savings", 1000);
     }
 
     @Test
@@ -120,13 +120,26 @@ public class BankAccountTest {
         assertThat(testBankAccount.getBalance()).isEqualTo(10.00);
     }
 
+    @Test
     public void hasAccountType(){
+        assertThat(testBankAccount.getAccountType().toLowerCase()).isEqualTo("savings");
+    }
+
+    @Test
+    public void canSetAccountType(){
+        testBankAccount.setAccountType("Current");
         assertThat(testBankAccount.getAccountType().toLowerCase()).isEqualTo("current");
     }
 
-    public void canSetAccountType(){
-        testBankAccount.setAccountType("Savings");
-        assertThat(testBankAccount.getAccountType().toLowerCase()).isEqualTo("savings");
+    @Test
+    public void hasOverdraft(){
+        assertThat(testBankAccount.getOverdraft()).isEqualTo(1000);
+    }
+
+    @Test
+    public void canSetOverdraft(){
+        testBankAccount.setOverdraft(2000);
+        assertThat(testBankAccount.getOverdraft()).isEqualTo(2000);
     }
 
 }
