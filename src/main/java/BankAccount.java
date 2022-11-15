@@ -10,6 +10,9 @@ public class BankAccount {
     private Integer accountNumber;
     private Double balance = 0.00;
 
+    // Extension properties:
+    private String accountType;
+
     //Constructor:
     public BankAccount(String firstName, String lastName, LocalDate dateOfBirth,
                        Integer accountNumber){
@@ -46,17 +49,14 @@ public class BankAccount {
     }
 
     // Paying simple interest
-    public String payInterest(Double borrowAmount, Double annualRate){
-        if (borrowAmount <= 0){
-            return "[Error]: You have borrowed no money";
-
-        } else if (annualRate < 0) {
-            return "[Error]: Your annual interest rate can not be negative";
+    public String payInterest(Double annualRate){
+        if (annualRate < 0){
+            return "[Error]: Your APY is negative.";
 
         } else {
-            Double interestPayment = borrowAmount * (annualRate/100);
-            this.setBalance(this.getBalance() - interestPayment);
-            return "You've paid £" + interestPayment + " in annual interest on your £" + borrowAmount + " loan. Your new balance is: £" + this.getBalance();
+            Double interestPaid = this.getBalance() * (annualRate/100);
+            this.setBalance(this.getBalance() * (1 + (annualRate/100)));
+            return "You've been paid £" + interestPaid + " in interest from " + annualRate + "% APY. Your new balance is: £" + this.getBalance();
 
         }
     }

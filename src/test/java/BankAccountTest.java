@@ -54,16 +54,12 @@ public class BankAccountTest {
     public void canPayInterest(){
         testBankAccount.setBalance(1000.00);
 
-        String expected = "You've paid £35.0 in annual interest on your £1000.0 loan. Your new balance is: £965.0";
-        String actual = testBankAccount.payInterest(1000.00, 3.5);
+        String expected = "You've been paid £35.0 in interest from 3.5% APY. Your new balance is: £1035.0";
+        String actual = testBankAccount.payInterest(3.5);
         assertThat(actual).isEqualTo(expected);
 
-        String expectedNegBorrow = "[Error]: You have borrowed no money";
-        String actualNegBorrow = testBankAccount.payInterest(-1000.00, 3.5);
-        assertThat(actual).isEqualTo(expected);
-
-        String expectedNegRate = "[Error]: Your annual interest rate can not be negative";
-        String actualNegRate = testBankAccount.payInterest(1000.00, -3.5);
+        String expectedNegRate = "[Error]: Your APY is negative.";
+        String actualNegRate = testBankAccount.payInterest(-3.5);
         assertThat(actual).isEqualTo(expected);
 
     }
