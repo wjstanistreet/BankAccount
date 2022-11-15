@@ -45,10 +45,16 @@ public class BankAccount {
         if (withdrawAmount < 0) {
             return "[Error]: You can't withdraw a negative amount";
         } else {
-            Double currentBalance = this.getBalance();
-            this.setBalance(currentBalance - withdrawAmount);
-            return "Withdrawal Success: You've withdrawn: £" + withdrawAmount + " and your new balance is: £" + this.getBalance();
+            this.setBalance(this.getBalance() - withdrawAmount);
+
+            if (this.getBalance() < 0){
+                return "Alert: You've withdrawn: £" + withdrawAmount + " but you're £" + (-1 * this.getBalance()) + " into your £" + this.getOverdraft() + " overdraft.";
+
+            } else {
+                return "Withdrawal Success: You've withdrawn: £" + withdrawAmount + " and your new balance is: £" + this.getBalance();
+            }
         }
+
     }
 
     // Paying simple interest

@@ -40,8 +40,8 @@ public class BankAccountTest {
         assertThat(actual).isEqualTo(expected);
 
         // Tests decimal withdrawal
-        String expectedDec = "Withdrawal Success: You've withdrawn: £123.45 and your new balance is: £826.55";
-        String actualDec = testBankAccount.withdraw(123.45);
+        String expectedDec = "Alert: You've withdrawn: £1000.0 but you're £50.0 into your £1000 overdraft.";
+        String actualDec = testBankAccount.withdraw(1000.00);
         assertThat(actualDec).isEqualTo(expectedDec);
 
         // Tests negative withdrawal
