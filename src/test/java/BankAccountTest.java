@@ -11,7 +11,7 @@ public class BankAccountTest {
 
     @BeforeEach
     public void setUp() {
-        testBankAccount = new BankAccount("Will", "Stanistreet", LocalDate.of(1999, 7, 2), 1);
+        testBankAccount = new BankAccount("Will", "Stanistreet", LocalDate.of(1999, 7, 2), 1, "Savings");
     }
 
     @Test
@@ -55,13 +55,8 @@ public class BankAccountTest {
         testBankAccount.setBalance(1000.00);
 
         String expected = "You've been paid £35.0 in interest from 3.5% APY. Your new balance is: £1035.0";
-        String actual = testBankAccount.payInterest(3.5);
+        String actual = testBankAccount.payInterest();
         assertThat(actual).isEqualTo(expected);
-
-        String expectedNegRate = "[Error]: Your APY is negative.";
-        String actualNegRate = testBankAccount.payInterest(-3.5);
-        assertThat(actual).isEqualTo(expected);
-
     }
 
     @Test
@@ -123,6 +118,15 @@ public class BankAccountTest {
     public void canSetBalance(){
         testBankAccount.setBalance(10.00);
         assertThat(testBankAccount.getBalance()).isEqualTo(10.00);
+    }
+
+    public void hasAccountType(){
+        assertThat(testBankAccount.getAccountType().toLowerCase()).isEqualTo("current");
+    }
+
+    public void canSetAccountType(){
+        testBankAccount.setAccountType("Savings");
+        assertThat(testBankAccount.getAccountType().toLowerCase()).isEqualTo("savings");
     }
 
 }

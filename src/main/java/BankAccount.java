@@ -15,12 +15,13 @@ public class BankAccount {
 
     //Constructor:
     public BankAccount(String firstName, String lastName, LocalDate dateOfBirth,
-                       Integer accountNumber){
+                       Integer accountNumber, String accountType){
 
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
         this.accountNumber = accountNumber;
+        this.accountType = accountType;
 
     }
 
@@ -49,16 +50,20 @@ public class BankAccount {
     }
 
     // Paying simple interest
-    public String payInterest(Double annualRate){
-        if (annualRate < 0){
-            return "[Error]: Your APY is negative.";
+    public String payInterest() {
+        double annualRate = 0.0;
 
-        } else {
-            Double interestPaid = this.getBalance() * (annualRate/100);
-            this.setBalance(this.getBalance() * (1 + (annualRate/100)));
-            return "You've been paid £" + interestPaid + " in interest from " + annualRate + "% APY. Your new balance is: £" + this.getBalance();
+        if (this.getAccountType().toLowerCase().equals("savings")) {
+            annualRate = 3.5;
 
+        } else if (getAccountType().toLowerCase().equals("current")) {
+            annualRate = 1.5;
         }
+
+        double interestPaid = this.getBalance() * (annualRate/100);
+        this.setBalance(this.getBalance() * (1 + (annualRate/100)));
+        return "You've been paid £" + interestPaid + " in interest from " + annualRate + "% APY. Your new balance is: £" + this.getBalance();
+
     }
 
     // Getters and Setters:
@@ -105,6 +110,15 @@ public class BankAccount {
 
     public void setBalance(Double balance){
         this.balance = balance;
+    }
+
+    // _______ accountType _______
+    public String getAccountType() {
+        return this.accountType;
+    }
+
+    public void setAccountType(String accountType){
+        this.accountType = accountType;
     }
 
 }
