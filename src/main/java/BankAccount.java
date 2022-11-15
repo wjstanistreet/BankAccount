@@ -1,5 +1,6 @@
 import java.sql.SQLOutput;
 import java.time.LocalDate;
+import java.util.concurrent.locks.AbstractOwnableSynchronizer;
 
 public class BankAccount {
     // BankAccount properties:
@@ -41,6 +42,22 @@ public class BankAccount {
             Double currentBalance = this.getBalance();
             this.setBalance(currentBalance - withdrawAmount);
             return "Withdrawal Success: You've withdrawn: £" + withdrawAmount + " and your new balance is: £" + this.getBalance();
+        }
+    }
+
+    // Paying simple interest
+    public String payInterest(Double borrowAmount, Double annualRate){
+        if (borrowAmount <= 0){
+            return "[Error]: You have borrowed no money";
+
+        } else if (annualRate < 0) {
+            return "[Error]: Your annual interest rate can not be negative";
+
+        } else {
+            Double interestPayment = borrowAmount * (annualRate/100);
+            this.setBalance(this.getBalance() - interestPayment);
+            return "You've paid £" + interestPayment + " in annual interest on your £" + borrowAmount + " loan. Your new balance is: £" + this.getBalance();
+
         }
     }
 
