@@ -15,6 +15,42 @@ public class BankAccountTest {
     }
 
     @Test
+    public void canDeposit(){
+        String expected = "Deposit Success: You've deposited: £1000.0 and your new balance is: £1000.0";
+        String actual = testBankAccount.deposit(1000.00);
+        assertThat(actual).isEqualTo(expected);
+
+        // Tests decimal deposit
+        String expectedDec = "Deposit Success: You've deposited: £0.55 and your new balance is: £1000.55";
+        String actualDec = testBankAccount.deposit(0.55);
+        assertThat(actualDec).isEqualTo(expectedDec);
+
+        // Tests negative deposit
+        String expectedNeg = "[Error]: You can't deposit a negative amount";
+        String actualNeg = testBankAccount.deposit(-100.00);
+        assertThat(actualNeg).isEqualTo(expectedNeg);
+    }
+
+    @Test
+    public void canWithdraw(){
+        testBankAccount.setBalance(1000.00);
+
+        String expected = "Withdrawal Success: You've withdrawn: £50.0 and your new balance is: £950.0";
+        String actual = testBankAccount.withdraw(50.00);
+        assertThat(actual).isEqualTo(expected);
+
+        // Tests decimal withdrawal
+        String expectedDec = "Withdrawal Success: You've withdrawn: £123.45 and your new balance is: £826.55";
+        String actualDec = testBankAccount.withdraw(123.45);
+        assertThat(actualDec).isEqualTo(expectedDec);
+
+        // Tests negative withdrawal
+        String expectedNeg = "[Error]: You can't withdraw a negative amount";
+        String actualNeg = testBankAccount.withdraw(-100.00);
+        assertThat(actualNeg).isEqualTo(expectedNeg);
+    }
+
+    @Test
     public void hasFirstName() {
         assertThat(testBankAccount.getFirstName()).isEqualTo("Will");
     }
@@ -64,15 +100,15 @@ public class BankAccountTest {
         assertThat(testBankAccount.getBalance()).isEqualTo(0);
 
         // With a new balance, test if getBalance() still works
-        testBankAccount.setBalance(500000);
-        assertThat(testBankAccount.getBalance()).isEqualTo(500000);
+        testBankAccount.setBalance(500000.00);
+        assertThat(testBankAccount.getBalance()).isEqualTo(500000.00);
 
     }
 
     @Test
     public void canSetBalance(){
-        testBankAccount.setBalance(10);
-        assertThat(testBankAccount.getBalance()).isEqualTo(10);
+        testBankAccount.setBalance(10.00);
+        assertThat(testBankAccount.getBalance()).isEqualTo(10.00);
     }
 
 }

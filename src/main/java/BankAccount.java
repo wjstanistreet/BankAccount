@@ -1,3 +1,4 @@
+import java.sql.SQLOutput;
 import java.time.LocalDate;
 
 public class BankAccount {
@@ -6,7 +7,7 @@ public class BankAccount {
     private String lastName;
     private LocalDate dateOfBirth;
     private Integer accountNumber;
-    private Integer balance = 0;
+    private Double balance = 0.00;
 
     //Constructor:
     public BankAccount(String firstName, String lastName, LocalDate dateOfBirth,
@@ -20,22 +21,26 @@ public class BankAccount {
     }
 
     // Custom methods:
-    public void deposit(Integer depositAmount){
+    // Deposit
+    public String deposit(Double depositAmount){
         // gets current account balance and adds the deposit amount
         if (depositAmount < 0) {
-            System.out.println("[Error]: You can't deposit a negative amount");
+            return "[Error]: You can't deposit a negative amount";
         } else {
-            int currentBalance = this.getBalance();
+            Double currentBalance = this.getBalance();
             this.setBalance(currentBalance + depositAmount);
+            return "Deposit Success: You've deposited: £" + depositAmount + " and your new balance is: £" + this.getBalance();
         }
     }
 
-    public void withdrawal(Integer withdrawalAmount){
-        if (withdrawalAmount < 0) {
-            System.out.println("[Error]: You can't withdraw a negative amount");
+    // Withdrawal
+    public String withdraw(Double withdrawAmount){
+        if (withdrawAmount < 0) {
+            return "[Error]: You can't withdraw a negative amount";
         } else {
-            int currentBalance = this.getBalance();
-            this.setBalance(currentBalance - withdrawalAmount);
+            Double currentBalance = this.getBalance();
+            this.setBalance(currentBalance - withdrawAmount);
+            return "Withdrawal Success: You've withdrawn: £" + withdrawAmount + " and your new balance is: £" + this.getBalance();
         }
     }
 
@@ -77,11 +82,11 @@ public class BankAccount {
     }
 
     // ________ balance _______
-    public Integer getBalance() {
+    public Double getBalance() {
         return this.balance;
     }
 
-    public void setBalance(Integer balance){
+    public void setBalance(Double balance){
         this.balance = balance;
     }
 
